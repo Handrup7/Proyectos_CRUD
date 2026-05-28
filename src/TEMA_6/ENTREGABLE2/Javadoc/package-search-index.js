@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"TEMA_6.ENTREGABLE2"},{"l":"TEMA_6.ENTREGABLE2.Controlador"},{"l":"TEMA_6.ENTREGABLE2.Modelo"},{"l":"TEMA_6.ENTREGABLE2.Vista"}];updateSearchResults();
