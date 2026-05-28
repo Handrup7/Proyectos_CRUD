@@ -1,40 +1,41 @@
-# Actividad 2 - JDBC con MySQL
+# CRUD MySQL (EMPRESA) — Java + Swing (MVC)
 
-Este modulo implementa una app Swing (MVC) conectada a MySQL para gestionar `Empleado` y `Departamento`.
+Aplicación Java con interfaz Swing siguiendo patrón MVC, conectada a MySQL mediante JDBC.
+Permite gestionar entidades relacionadas con `Empleado` y `Departamento`.
 
-## Requisitos funcionales implementados
+## Funcionalidades (resumen)
+- Inserción, actualización y eliminación de registros en ambas tablas
+- Consultas y listados personalizados
+- Validaciones desde el controlador (según la práctica)
 
-1. Insercion en ambas tablas (IDs autoincrementales, no se piden al insertar).
-2. Actualizacion de ambas tablas por codigo.
-3. Eliminacion de registros en ambas tablas por codigo.
-4. Consulta de nombre/localidad de todos los departamentos.
-5. Modificacion de salario en rango fijo 1750-2250 (incremento del 10%).
-6. Listado de empleados de departamentos en Arucas con comision > 20.
-7. Variante del punto 5 pidiendo rango e incremento al usuario.
-8. Variante del punto 6 pidiendo localidad y comision minima al usuario.
+## Estructura del proyecto
+- `MainGestion.java`: arranque de la app
+- `Controlador/Controlador.java`: lógica de eventos y validaciones
+- `Modelo/Conexion.java`: conexión JDBC (lee configuración)
+- `Modelo/Consultas.java`: sentencias SQL
+- `Vista/Ventana.java`: interfaz Swing
 
-## Estructura
+## Configuración de Base de Datos
+Este proyecto se ejecuta contra MySQL en `localhost:3306`.
 
-- `MainGestion.java`: arranque de la app.
-- `Controlador/Controlador.java`: logica de eventos y validaciones.
-- `Modelo/Conexion.java`: conexion JDBC usando `config.txt`.
-- `Modelo/Consultas.java`: sentencias SQL.
-- `Vista/Ventana.java`: interfaz Swing.
+Base de datos usada (por defecto):
+- `actividadjava`
 
-## Configuracion de BD
+Driver:
+- `com.mysql.cj.jdbc.Driver`
 
-Archivo `config.txt`:
+### Credenciales (recomendado)
+No se suben contraseñas al repositorio. Configura tus credenciales de forma local usando variables de entorno:
 
-- `url=jdbc:mysql://localhost:3306/empresa`
-- `user=...`
-- `password=...`
-- `driver=com.mysql.cj.jdbc.Driver`
+- `DB_USER`
+- `DB_PASSWORD`
 
-## Esquema SQL recomendado (auto_increment)
+> Si tu implementación actual usa un archivo local tipo `config.txt`, úsalo solo en tu PC y evita subir credenciales reales a GitHub.
 
+## Esquema SQL (orientativo)
 ```sql
-CREATE DATABASE IF NOT EXISTS empresa;
-USE empresa;
+CREATE DATABASE IF NOT EXISTS actividadjava;
+USE actividadjava;
 
 CREATE TABLE IF NOT EXISTS Departamento (
   codigo_departamento INT AUTO_INCREMENT PRIMARY KEY,
@@ -58,15 +59,7 @@ CREATE TABLE IF NOT EXISTS Empleado (
 );
 ```
 
-## Compilacion rapida (PowerShell)
-
-```powershell
-& "C:\Program Files\Java\jdk-25\bin\javac.exe" -encoding UTF-8 -cp "D:\AlumnoM\1ºA_DAM\PRO_DAM\src\TEMA_6\JAVA\CRUD_MySQL_MVC_EMPRESA\mysql-connector-j-9.6.0.jar;D:\AlumnoM\1ºA_DAM\PRO_DAM\src" -d "D:\AlumnoM\1ºA_DAM\PRO_DAM\out\production\PRO_DAM" "D:\AlumnoM\1ºA_DAM\PRO_DAM\src\TEMA_6\JAVA\CRUD_MySQL_MVC_EMPRESA\MainGestion.java"
-```
-
-## Ejecucion rapida (PowerShell)
-
-```powershell
-& "C:\Program Files\Java\jdk-25\bin\java.exe" -classpath "D:\AlumnoM\1ºA_DAM\PRO_DAM\out\production\PRO_DAM;D:\AlumnoM\1ºA_DAM\PRO_DAM\src\TEMA_6\JAVA\CRUD_MySQL_MVC_EMPRESA\mysql-connector-j-9.6.0.jar" CRUD_MySQL_MVC_EMPRESA.MainGestion
-```
-
+## Ejecución
+1. Añade el driver JDBC (MySQL Connector/J) al proyecto en tu IDE.
+2. Configura `DB_USER` y `DB_PASSWORD`.
+3. Ejecuta `MainGestion.java`.
